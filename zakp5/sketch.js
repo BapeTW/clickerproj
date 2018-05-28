@@ -1,5 +1,6 @@
 //Declare Global Vars
 var mainbg = {};
+var uibg = {};
 var mainClickImages = {};
 var gameState;
 var playBox1Col;
@@ -10,6 +11,7 @@ var finishedChangeImg;
 var imgToClick;
 var isMainMenuOpen;
 var partsTotal;
+var addParts;
 
 function setup() {
 	var cnv = createCanvas(600, 800);
@@ -25,6 +27,7 @@ function setup() {
 	finishedChangeImg = true;
 	isMainMenuOpen = true;
 	partsTotal = 0;
+	addParts = 1;
 }
 
 function draw() {
@@ -37,7 +40,8 @@ function draw() {
 
 
 function preload() {
-	mainbg.img = loadImage("images/mainbg.jpg");
+	mainbg.img = loadImage("images/mainbg.png");
+	uibg.img = loadImage("images/uibg.jpg");
 
 
 	// Load Click Images
@@ -51,13 +55,15 @@ function preload() {
 
 
 function mousePressed() {
-	if (isUpgradeGuiOpen === false && mouseIsPressed && finishedChangeImg === true && isMainMenuOpen === false) {
+	if (isUpgradeGuiOpen === false && mouseIsPressed && finishedChangeImg === true && isMainMenuOpen === false && mouseY > 100) {
 		//Draw Image to click
 		changeFinishedImgLogic();
 	}
 	if (isUpgradeGuiOpen === false && isMainMenuOpen === false) {
 		changeImageLogic();
 	}
-
-	console.log(finishedChangeImg);
+	
+	//Upgrades!!
+	clickXUpgrade();
 }
+
