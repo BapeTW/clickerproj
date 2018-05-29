@@ -12,6 +12,10 @@ var imgToClick;
 var isMainMenuOpen;
 var partsTotal;
 var addParts;
+var isClickXUpgradePurchased;
+var isAutoClicker1UpgradePurchased;
+var upgradePurchased;
+var autoClickInterval = window.setInterval(autoClickUpgradeLogic, 1000);
 
 function setup() {
 	var cnv = createCanvas(600, 800);
@@ -28,6 +32,9 @@ function setup() {
 	isMainMenuOpen = true;
 	partsTotal = 0;
 	addParts = 1;
+	isClickXUpgradePurchased = false;
+	upgradePurchased = 105;
+	isAutoClicker1UpgradePurchased = false;
 }
 
 function draw() {
@@ -65,5 +72,6 @@ function mousePressed() {
 	
 	//Upgrades!!
 	clickXUpgrade();
+	autoClickUpgrade();
 }
 

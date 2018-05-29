@@ -115,6 +115,35 @@ function openUpgradeUI() {
 	fill(0);
 	text("Upgrade Menu", 265, 130);
 	
+	//Main Upgrades List
+	//2x parts per click upgrade
+	//small color changing logic if the upgrade is purchased or not
+	if (isClickXUpgradePurchased === false) {
+		fill(70, 130, 180);
+	} else {
+		fill(105);
+	}
+	rect(70, 150, 80, 50);
+	fill(255);
+	text("BUY", 110, 187);
+	textSize(20);
+	text("Gain an extra part per click.", 280, 169);
+	text("Cost: 150 Parts", 227, 193);
+	
+	//1 part per second automatically upgrade
+	if (isAutoClicker1UpgradePurchased === false) {
+		fill(70, 130, 180);
+	} else {
+		fill(105);
+	}
+	rect(70, 210, 80, 50);
+	fill(255);
+	textSize(30);
+	text("BUY", 110, 247);
+	textSize(20);
+	text("Automatically get 1 part per second", 315, 229);
+	text("Cost: 50 Parts", 220, 253);
+	
 	//Exit Button Logic
 	if (mouseX > 500 && mouseX < 540 && mouseY > 100 && mouseY < 140 && mouseIsPressed && isUpgradeGuiOpen === true) {
 		isUpgradeGuiOpen = false;
@@ -123,10 +152,11 @@ function openUpgradeUI() {
 
 //Logic for drawClickImage
 function changeFinishedImgLogic() {
+	//stop the image from continually changing if you hold left click on the image
 	finishedChangeImg = false;
 }
 
-// More logic for changing the image when you click (bugged + incomplete)
+// More logic for changing the image when you click. also logic for adding the parts per click to partsTotal. also contains a neat bit of logic to make sure the same image doesnt popup twice in a row while clicking by checking to see if the image to be displayed is the same as the last image displayed. if its the same image, it will simply run the function again until it gets a different image.
 function changeImageLogic() {
 	let randnum = Math.random();
 	if (randnum < 0.166 && finishedChangeImg === false) {
