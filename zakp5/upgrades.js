@@ -8,7 +8,7 @@ function clickXUpgrade() {
 		//Set the confirmation variable to true so the upgrade cannot be purchased again
 		isClickXUpgradePurchased = true;
 		//If the user does not have enough parts run this and alert them:
-	} else if (isUpgradeGuiOpen === true && mouseIsPressed && mouseX > 70 && mouseX < 150 && mouseY > 150 && mouseY < 200 && partsTotal < 149 && isClickXUpgradePurchased === false) {
+	} else if (isUpgradeGuiOpen === true && mouseIsPressed && mouseX > 70 && mouseX < 150 && mouseY > 150 && mouseY < 200 && partsTotal < 150 && isClickXUpgradePurchased === false) {
 		alert("Insufficient Parts");
 	}
 }
@@ -27,20 +27,5 @@ function autoClickUpgrade() {
 function autoClickUpgradeLogic() {
 	if (isAutoClicker1UpgradePurchased === true) {
 		partsTotal = partsTotal + 1;
-	}
-}
-
-//second click upgrade function
-function clickXUpgrade2() {
-	if (isUpgradeGuiOpen === true && mouseIsPressed && mouseX > 70 && mouseX < 150 && mouseY > 270 && mouseY < 320 && partsTotal > 1299 && isClickXUpgrade2Purchased === false) {
-		//Reset total parts
-		partsTotal = partsTotal - 1300;
-		//Set the upgraded variable
-		addParts = addParts + 2;
-		//Set the confirmation variable to true so the upgrade cannot be purchased again
-		isClickXUpgrade2Purchased = true;
-		//If the user does not have enough parts run this and alert them:
-	} else if (isUpgradeGuiOpen === true && mouseIsPressed && mouseX > 70 && mouseX < 150 && mouseY > 270 && mouseY < 320 && partsTotal < 1300 && isClickXUpgrade2Purchased === false) {
-		alert("Insufficient Parts");
 	}
 }

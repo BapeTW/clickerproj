@@ -13,7 +13,6 @@ var isMainMenuOpen;
 var partsTotal;
 var addParts;
 var isClickXUpgradePurchased;
-var isClickXUpgrade2Purchased;
 var isAutoClicker1UpgradePurchased;
 var upgradePurchased;
 var autoClickInterval = window.setInterval(autoClickUpgradeLogic, 1000);
@@ -34,7 +33,6 @@ function setup() {
 	partsTotal = 0;
 	addParts = 1;
 	isClickXUpgradePurchased = false;
-	isClickXUpgrade2Purchased = false;
 	upgradePurchased = 105;
 	isAutoClicker1UpgradePurchased = false;
 }
@@ -71,9 +69,9 @@ function mousePressed() {
 	if (isUpgradeGuiOpen === false && isMainMenuOpen === false) {
 		changeImageLogic();
 	}
-
+	
 	//Upgrades!!
 	clickXUpgrade();
 	autoClickUpgrade();
-	clickXUpgrade2();
 }
+
