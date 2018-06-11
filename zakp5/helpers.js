@@ -37,6 +37,8 @@ function drawMainMenu() {
 
 // USER INTERFACE (main game)
 function drawUI() {
+	//sloppy var stuff
+
 	//Main Background Draw
 	noStroke();
 	image(uibg.img, 0, 0)
@@ -81,11 +83,27 @@ function drawUI() {
 	//Draw Ellipse Transparent
 	fill(0, 0, 0, 99);
 	ellipse(300, 450, 380, 380);
-	
+
 	// Draw Image To Click
-	tint(255,255);
+	tint(255, 255);
 	image(imgToClick, 150, 300);
-	
+
+	//Combo counter!
+	comboCount = comboPartsCount / secondsSpent;
+	textAlign(LEFT);
+	if (prevComboCount < comboCount - 0.5 && comboCount > 5 || prevComboCount > comboCount - 0.5 && comboCount > 5) {
+		drawComboCount();
+		comboCounting = true;
+	}
+
+	if (comboCount < 5) {
+		drawComboCountResets();
+		comboCounting = false;
+	}
+
+
+	textAlign(CENTER);
+
 	//Upgrade button logic
 	if (mouseX > 370 && mouseY > 10 && mouseX < 592 && mouseY < 90 && mouseIsPressed && isUpgradeGuiOpen === false) {
 		upgradeBoxCol = 150;
@@ -102,19 +120,19 @@ function openUpgradeUI() {
 	rect(50, 90, 500, 700);
 	fill(10, 15, 100);
 	rect(60, 100, 480, 680);
-	
+
 	//Exit Button
 	textAlign(CENTER);
 	fill("red");
 	rect(500, 100, 40, 40);
 	fill("255");
 	text("x", 520, 125);
-	
+
 	//Upgrades header text
 	rect(60, 100, 440, 40);
 	fill(0);
 	text("Upgrade Menu", 265, 130);
-	
+
 	//Main Upgrades List
 	//2x parts per click upgrade
 	//small color changing logic if the upgrade is purchased or not
@@ -129,7 +147,7 @@ function openUpgradeUI() {
 	textSize(20);
 	text("Gain an extra part per click.", 280, 169);
 	text("Cost: 150 Parts", 227, 193);
-	
+
 	//1 part per second automatically upgrade
 	if (isAutoClicker1UpgradePurchased === false) {
 		fill(70, 130, 180);
@@ -143,7 +161,21 @@ function openUpgradeUI() {
 	textSize(20);
 	text("Automatically get 1 part per second", 315, 229);
 	text("Cost: 50 Parts", 220, 253);
-	
+
+	//2x parts per click v2
+	if (isClickXUpgrade2Purchased === false) {
+		fill(70, 130, 180);
+	} else {
+		fill(105);
+	}
+	rect(70, 270, 80, 50);
+	fill(255);
+	textSize(30);
+	text("BUY", 110, 307);
+	textSize(20);
+	text("Gain double the parts per click.", 295, 289);
+	text("Cost: 1300 Parts", 232, 313);
+
 	//Exit Button Logic
 	if (mouseX > 500 && mouseX < 540 && mouseY > 100 && mouseY < 140 && mouseIsPressed && isUpgradeGuiOpen === true) {
 		isUpgradeGuiOpen = false;
@@ -165,6 +197,7 @@ function changeImageLogic() {
 		} else {
 			imgToClick = mainClickImages.img1;
 			partsTotal = addParts + partsTotal;
+			comboPartsCount = comboPartsCount + 1;
 		}
 	} else if (randnum < 0.333 && finishedChangeImg === false) {
 		if (imgToClick === mainClickImages.img2) {
@@ -172,6 +205,7 @@ function changeImageLogic() {
 		} else {
 			imgToClick = mainClickImages.img2;
 			partsTotal = addParts + partsTotal;
+			comboPartsCount = comboPartsCount + 1;
 		}
 	} else if (randnum < 0.5 && finishedChangeImg === false) {
 		if (imgToClick === mainClickImages.img3) {
@@ -179,6 +213,7 @@ function changeImageLogic() {
 		} else {
 			imgToClick = mainClickImages.img3;
 			partsTotal = addParts + partsTotal;
+			comboPartsCount = comboPartsCount + 1;
 		}
 	} else if (randnum < 0.666 && finishedChangeImg === false) {
 		if (imgToClick === mainClickImages.img4) {
@@ -186,6 +221,7 @@ function changeImageLogic() {
 		} else {
 			imgToClick = mainClickImages.img4;
 			partsTotal = addParts + partsTotal;
+			comboPartsCount = comboPartsCount + 1;
 		}
 	} else if (randnum < 0.833 && finishedChangeImg === false) {
 		if (imgToClick === mainClickImages.img5) {
@@ -193,6 +229,7 @@ function changeImageLogic() {
 		} else {
 			imgToClick = mainClickImages.img5;
 			partsTotal = addParts + partsTotal;
+			comboPartsCount = comboPartsCount + 1;
 		}
 	} else if (randnum < 1 && finishedChangeImg === false) {
 		if (imgToClick === mainClickImages.img6) {
@@ -200,6 +237,7 @@ function changeImageLogic() {
 		} else {
 			imgToClick = mainClickImages.img6;
 			partsTotal = addParts + partsTotal;
+			comboPartsCount = comboPartsCount + 1;
 		}
 	}
 	finishedChangeImg = true;
